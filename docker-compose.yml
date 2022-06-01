@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  redis-server:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - backend-net
+
+  redis-mgmt:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOST=redis-server
+    ports:
+      - 8081:8081
+    restart: always
+    networks:
+      - backend-net
+networks:
+  backend-net:
