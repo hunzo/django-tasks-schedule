@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +134,7 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
 
 CELERY_TIMEZONE = "Asia/Bangkok"
 CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
+# CELERY_TASK_TIME_LIMIT = 30 * 60
+
+
+CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
